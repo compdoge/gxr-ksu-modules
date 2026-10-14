@@ -1,0 +1,6 @@
+{
+  "_comment": "Where tools/sync.py pulls each catalogue module from. Keys are module ids from modules.json. Optional 'assetPrefix' overrides the default '<id>-' match for release asset names.",
+  "gxr-alvr": {
+    "repository": "compdoge/gxr-root-ft"
+  }
+}

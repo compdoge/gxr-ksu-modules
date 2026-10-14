@@ -1,0 +1,46 @@
+name: Sync catalogue
+
+# Keeps modules/<id>/update.json in step with the modules' upstream releases.
+# Runs on a schedule, on demand, and on a repository_dispatch event so the
+# module's own repository can ping it after publishing a release.
+
+on:
+  schedule:
+    - cron: "23 */6 * * *"
+  workflow_dispatch:
+  repository_dispatch:
+    types: [sync-catalogue]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-catalogue
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Refresh update.json from upstream releases
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python tools/sync.py
+
+      - name: Commit changes
+        run: |
+          git add -- modules.json modules
+          if git diff --cached --quiet; then
+            echo "Catalogue is already up to date."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Sync catalogue from upstream releases"
+          git push

@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "modules": [
+    {
+      "id": "gxr-alvr",
+      "name": "Galaxy XR face tracking relay",
+      "description": "Headset-side face/eye relay for VRCFaceTracking. Runs gxr_alvr as root at boot and streams the full face/eye parameter set (incl. TongueRoll) over UDP 41463. Source and releases: compdoge/gxr-root-ft.",
+      "updateJson": "https://raw.githubusercontent.com/compdoge/gxr-ksu-modules/main/modules/gxr-alvr/update.json"
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+# Keep text files LF everywhere so the workflow YAML, JSON and Python behave
+# identically on Windows and on the Linux runner.
+* text=auto eol=lf

@@ -9,11 +9,11 @@ The current contents are:
 
 | Module | What it does | Home repository |
 | --- | --- | --- |
-| `gxr-alvr` — Galaxy XR face tracking relay | Runs the headset-side face/eye relay (`gxr_alvr`) as root and streams the full face/eye parameter set to VRCFaceTracking over UDP 41463. | [`compdoge/gxr-root-ft`](https://github.com/compdoge/gxr-root-ft) |
+| `gxr-alvr` - Galaxy XR face tracking relay | Runs the headset-side face/eye relay (`gxr_alvr`) as root and streams the full face/eye parameter set to VRCFaceTracking over UDP 41463. | [`compdoge/gxr-root-ft`](https://github.com/compdoge/gxr-root-ft) |
 
 ## Requirements
 
-This source targets the KernelSU build used on the Galaxy XR —
+This source targets the KernelSU build used on the Galaxy XR:
 [`4uva4ek/KernelSU-GXR`](https://github.com/4uva4ek/KernelSU-GXR) (branch
 `galaxyxr`), whose manager has a **Module sources** feature. It is not the
 official `modules.kernelsu.org` catalogue and does not use the same format.
@@ -30,7 +30,7 @@ official `modules.kernelsu.org` catalogue and does not use the same format.
 
    and tap **Add source**. It becomes the active source.
 4. The module list now shows **Galaxy XR face tracking relay**. Select it and tap
-   **Install selected**. Installing does not start the relay — reboot the headset
+   **Install selected**. Installing does not start the relay; reboot the headset
    as the module's own README describes.
 
 Updates are picked up from this source too: when a newer release appears, the
@@ -95,8 +95,8 @@ refresh right after it publishes a release.
    ```
 
 3. Run `python tools/sync.py`. The module's releases must be stable (non-
-   prerelease, non-draft) and carry a ZIP asset named `my-module-…zip` with a
-   single `module.prop` at the ZIP root.
+   prerelease, non-draft) and carry a ZIP asset named `<id>-v<version>.zip`
+   with a single `module.prop` at the ZIP root.
 
 The `id` must match `^[a-zA-Z][a-zA-Z0-9._-]+$` and must be identical across
 every release of that module.
@@ -113,4 +113,4 @@ every release of that module.
 
 ## License
 
-MIT — see [`LICENSE`](LICENSE). Module code is licensed in its own repository.
+MIT - see [`LICENSE`](LICENSE). Module code is licensed in its own repository.

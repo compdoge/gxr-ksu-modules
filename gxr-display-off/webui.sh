@@ -44,12 +44,21 @@ case "$1" in
     [ -f "$PANEL" ] && bl=$(cat "$PANEL" 2>/dev/null)
     if [ "$bl" = "1" ]; then panel=blanked; else panel=on; fi
 
+    now=$(date +%s)
+    idle=0
+    if [ "$present" = "0" ] && [ -n "$since" ]; then
+      idle=$(( now - since )); [ "$idle" -lt 0 ] && idle=0
+    fi
+    rem=$(( d - idle )); [ "$rem" -lt 0 ] && rem=0
+
     echo "mode=$m"
     echo "delay=$d"
     echo "esd=$e"
     echo "paused=$([ -f "$PAUSED" ] && echo 1 || echo 0)"
     echo "pid=$(watcher_pid)"
     echo "eye=$eye"
+    echo "idle=$idle"
+    echo "remaining=$rem"
     echo "panel=$panel"
     echo "tail=$(tail -n 12 "$LOG" 2>/dev/null | tr '\n' '~')"
     ;;

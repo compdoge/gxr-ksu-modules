@@ -56,6 +56,7 @@
     <h2>Status <span id="bridge" class="pill">connecting...</span><span id="mode" class="pill">-</span></h2>
     <dl>
       <dt>Eye state</dt><dd id="s-eye" class="mono">-</dd>
+      <dt>Countdown</dt><dd id="s-countdown" class="mono">-</dd>
       <dt>Panels</dt><dd id="s-panel" class="mono">-</dd>
       <dt>Watcher pid</dt><dd id="s-pid" class="mono">-</dd>
       <dt>Delay</dt><dd id="s-delay" class="mono">-</dd>
@@ -202,14 +203,14 @@ function applyRelayState(s) {
   $("btn-resume").disabled = running && !paused;
 }
 
-function refresh() {
-  setBusy(true);
+function refresh(quiet) {
+  if (!quiet) setBusy(true);
   ksuExec("sh " + MOD + "/webui.sh status").then(function (r) {
     if (r.errno !== 0 && !r.stdout) {
       $("bridge").textContent = "no root bridge";
       $("bridge").className = "pill err";
       $("s-eye").textContent = r.stderr || "unavailable";
-      setBusy(false);
+      if (!quiet) setBusy(false);
       return;
     }
     $("bridge").textContent = "root ok";
@@ -222,15 +223,29 @@ function refresh() {
     else if (m === "displayoff") { mp.textContent = "display off"; mp.className = "pill ok"; }
     else { mp.textContent = "off"; mp.className = "pill"; }
 
-    if (document.activeElement !== $("delay")) $("delay").value = s.delay || "90";
-    $("cb-sleep").checked = (m === "sleep");
-    $("cb-displayoff").checked = (m === "displayoff");
-    $("cb-esd").checked = (s.esd === "1");
+    if (!quiet) {
+      if (document.activeElement !== $("delay")) $("delay").value = s.delay || "90";
+      $("cb-sleep").checked = (m === "sleep");
+      $("cb-displayoff").checked = (m === "displayoff");
+      $("cb-esd").checked = (s.esd === "1");
+    }
 
     var eye = $("s-eye");
     if (s.eye === "eyes") { eye.textContent = "eyes detected"; eye.className = "mono ok"; }
     else if (s.eye === "no-eyes") { eye.textContent = "no eyes"; eye.className = "mono warn"; }
     else { eye.textContent = "unknown"; eye.className = "mono"; }
+
+    var cd = $("s-countdown");
+    if (s.eye === "no-eyes") {
+      cd.textContent = "acts in " + (s.remaining || "0") + "s (gone " + (s.idle || "0") + "s)";
+      cd.className = "mono warn";
+    } else if (s.eye === "eyes") {
+      cd.textContent = "not counting (eyes present)";
+      cd.className = "mono ok";
+    } else {
+      cd.textContent = "-";
+      cd.className = "mono";
+    }
 
     var pn = $("s-panel");
     if (s.panel === "blanked") { pn.textContent = "Blanked"; pn.className = "mono warn"; }
@@ -246,6 +261,10 @@ function refresh() {
     applyRelayState(s);
   });
 }
+
+/* Live poll: refresh the read-only status every 1.5 s while the page is open,
+   but never while a command is in flight (so it cannot fight a button press). */
+function poll() { if (!BUSY) refresh(true); }
 
 /* The two mode toggles are mutually exclusive in the UI: turning one on turns
    the other off; both may be off (mode "off"). */
@@ -344,6 +363,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   $("btn-export").addEventListener("click", exportLogs);
   refresh();
+  setInterval(poll, 1500);
 });
 </script>
 </body>

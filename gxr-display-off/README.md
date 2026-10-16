@@ -165,7 +165,7 @@ These are **not yet confirmed on a live, enabled install** and are marked
 **forward-slash** entry names and `module.prop` at the zip root:
 
 ```sh
-python tools/make_module_zip.py gxr-display-off dist/gxr-display-off-v0.1.0.zip
+python tools/make_module_zip.py gxr-display-off dist/gxr-display-off-v0.2.0.zip
 ```
 
 Windows zip tools (Compress-Archive, `ZipFile.CreateFromDirectory`) write

@@ -45,7 +45,7 @@ separate one. It has no published release yet, so it is not in `modules.json`;
 build and install it by hand until a release exists:
 
 ```sh
-python tools/make_module_zip.py gxr-display-off dist/gxr-display-off-v0.1.0.zip
+python tools/make_module_zip.py gxr-display-off dist/gxr-display-off-v0.2.0.zip
 ```
 
 The ZIP has `module.prop` at the root and forward-slash entry names (KernelSU

@@ -18,7 +18,7 @@ Usage:
     python tools/make_module_zip.py <module-dir> <out.zip>
 
 Example:
-    python tools/make_module_zip.py gxr-display-off dist/gxr-display-off-v0.1.0.zip
+    python tools/make_module_zip.py gxr-display-off dist/gxr-display-off-v0.2.0.zip
 """
 import os
 import sys

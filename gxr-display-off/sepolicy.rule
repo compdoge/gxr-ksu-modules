@@ -1,0 +1,9 @@
+# Allow the KernelSU root domain to use the debugfs DSI tx_cmd nodes and the
+# panel esd_check sysfs nodes used by gxr-display-off.
+#
+# Needed only if SELinux is Enforcing and the ksu domain is not already
+# permitted. If a type is unknown the rule is ignored (KernelSU logs it) and
+# nothing breaks.
+allow ksu debugfs:dir { search read open getattr };
+allow ksu debugfs:file { read write open getattr };
+allow ksu sysfs:file { read write open getattr };

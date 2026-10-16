@@ -1,15 +1,17 @@
 # gxr-ksu-modules
 
-A **KernelSU module source** for the Samsung Galaxy XR (`SM-I610`). It is a small
+A **KernelSU module source** for the Samsung Galaxy XR (`SM-I610`). It is the
 catalogue that tells the KernelSU manager where to find my modules and their
-updates. It contains no module code: each module is built and released from its
-own repository, and this repo only mirrors the release metadata.
+updates. Most modules are built and released from their own repository and this
+repo only mirrors their release metadata; `gxr-display-off` is the exception -
+its source lives here in full (see below).
 
 The current contents are:
 
-| Module | What it does | Home repository |
+| Module | What it does | Source |
 | --- | --- | --- |
 | `gxr-alvr` - Galaxy XR face tracking relay | Runs the headset-side face/eye relay (`gxr_alvr`) as root and streams the full face/eye parameter set to VRCFaceTracking over UDP 41463. | [`compdoge/gxr-root-ft`](https://github.com/compdoge/gxr-root-ft) |
+| `gxr-display-off` - Galaxy XR display-off on eye loss | Blanks both headset panels (or sleeps the system) after the wearer's eyes are gone for the set delay, and restores them on eyes; WebUI to pick the mode and delay. | this repo: [`gxr-display-off/`](gxr-display-off) |
 
 ## Requirements
 
@@ -35,6 +37,23 @@ official `modules.kernelsu.org` catalogue and does not use the same format.
 
 Updates are picked up from this source too: when a newer release appears, the
 module is offered as an update.
+
+## Modules whose source lives here
+
+`gxr-display-off` is developed in this repository (`gxr-display-off/`), not in a
+separate one. It has no published release yet, so it is not in `modules.json`;
+build and install it by hand until a release exists:
+
+```sh
+python tools/make_module_zip.py gxr-display-off dist/gxr-display-off-v0.1.0.zip
+```
+
+The ZIP has `module.prop` at the root and forward-slash entry names (KernelSU
+will not show a module's WebUI if `webroot/index.html` is stored with a
+backslash, which is what Windows ZIP tools write). See
+[`gxr-display-off/README.md`](gxr-display-off/README.md) for the modes, the WebUI
+and recovery. Once it has a stable release, add it to `modules.json` and
+`tools/sources.json` like any other module.
 
 ## How it works
 
@@ -108,8 +127,9 @@ every release of that module.
 - The manager calls the GitHub API without a token, so it is subject to GitHub's
   unauthenticated rate limit (60 requests/hour per IP). If a source fails to
   load with "GitHub request limit reached", wait and retry.
-- The module's own repository remains the source of truth. This catalogue only
-  mirrors release metadata; it does not build, sign, or re-host the modules.
+- Each module's repository remains the source of truth. For modules developed
+  here (`gxr-display-off`) that repository is this one; otherwise this catalogue
+  only mirrors release metadata and does not build, sign, or re-host the module.
 
 ## License
 

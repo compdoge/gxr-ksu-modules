@@ -6,6 +6,12 @@
       "name": "Galaxy XR face tracking relay",
       "description": "Headset-side face/eye relay for VRCFaceTracking. Runs gxr_alvr as root at boot and streams the full face/eye parameter set (incl. TongueRoll) over UDP 41463. Source and releases: compdoge/gxr-root-ft.",
       "updateJson": "https://raw.githubusercontent.com/compdoge/gxr-ksu-modules/main/modules/gxr-alvr/update.json"
+    },
+    {
+      "id": "gxr-display-off",
+      "name": "Galaxy XR display-off on eye loss",
+      "description": "Blanks both panels (or sleeps) after the eyes are gone for the set delay and restores them on eyes; WebUI to pick the mode and delay.",
+      "updateJson": "https://raw.githubusercontent.com/compdoge/gxr-ksu-modules/main/modules/gxr-display-off/update.json"
     }
   ]
 }

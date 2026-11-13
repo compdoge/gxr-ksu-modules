@@ -42,13 +42,12 @@ module is offered as an update.
 ## Modules whose source lives here
 
 `gxr-display-off` and `gxr-handtracking-toggle` are developed in this
-repository, not in a separate one. `gxr-display-off` has a published release
-and is already in `modules.json`, picked up automatically by the module
-source above. `gxr-handtracking-toggle` does not have a release yet; build and
-install it by hand until one exists:
+repository, not in a separate one. Both have a published release and are
+already in `modules.json`, picked up automatically by the module source above.
+To build a new version by hand:
 
 ```sh
-python tools/make_module_zip.py gxr-handtracking-toggle dist/gxr-handtracking-toggle-v1.0.0.zip
+python tools/make_module_zip.py gxr-handtracking-toggle dist/gxr-handtracking-toggle-v<version>.zip
 ```
 
 The ZIP has `module.prop` at the root and forward-slash entry names (KernelSU

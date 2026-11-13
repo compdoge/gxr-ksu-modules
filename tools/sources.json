@@ -5,5 +5,8 @@
   },
   "gxr-display-off": {
     "repository": "compdoge/gxr-ksu-modules"
+  },
+  "gxr-handtracking-toggle": {
+    "repository": "compdoge/gxr-ksu-modules"
   }
 }

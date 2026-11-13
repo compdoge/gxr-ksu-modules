@@ -12,6 +12,12 @@
       "name": "Galaxy XR display-off on eye loss",
       "description": "Blanks both panels (or sleeps) after the eyes are gone for the set delay and restores them on eyes; WebUI to pick the mode and delay.",
       "updateJson": "https://raw.githubusercontent.com/compdoge/gxr-ksu-modules/main/modules/gxr-display-off/update.json"
+    },
+    {
+      "id": "gxr-handtracking-toggle",
+      "name": "Galaxy XR hand tracking toggle",
+      "description": "Action button toggles whether the headset can switch its active input mode to hand tracking, by live-patching surfaceflinger's own process memory. Confirmed live: fixes controllers losing tracking on grip release.",
+      "updateJson": "https://raw.githubusercontent.com/compdoge/gxr-ksu-modules/main/modules/gxr-handtracking-toggle/update.json"
     }
   ]
 }

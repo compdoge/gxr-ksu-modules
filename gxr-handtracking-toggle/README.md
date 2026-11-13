@@ -146,3 +146,6 @@ python tools/make_module_zip.py gxr-handtracking-toggle dist/gxr-handtracking-to
 ```
 
 The script writes forward-slash entry names with `module.prop` at the zip root.
+A published release exists and this module is in `modules.json`, so it is also
+picked up automatically by the module source described in the repo's main
+README - packaging by hand is only needed for building a new version.

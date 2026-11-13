@@ -1,0 +1,6 @@
+id=gxr-handtracking-toggle
+name=Galaxy XR hand tracking toggle
+version=v1.0.0
+versionCode=3
+author=compdoge
+description=Action button toggles whether the Galaxy XR can switch its active input mode to hand tracking, by live-patching two instructions in surfaceflinger's own process memory (never a file on disk). Confirmed live: releasing a controller's grip no longer switches to HAND and no longer suspends the controllers while disabled. Not remembered across reboot: press Action again after a reboot.

@@ -12,6 +12,7 @@ The current contents are:
 | --- | --- | --- |
 | `gxr-alvr` - Galaxy XR face tracking relay | Runs the headset-side face/eye relay (`gxr_alvr`) as root and streams the full face/eye parameter set to VRCFaceTracking over UDP 41463. | [`compdoge/gxr-root-ft`](https://github.com/compdoge/gxr-root-ft) |
 | `gxr-display-off` - Galaxy XR display-off on eye loss | Blanks both headset panels (or sleeps the system) after the wearer's eyes are gone for the set delay, and restores them on eyes; WebUI to pick the mode and delay. | this repo: [`gxr-display-off/`](gxr-display-off) |
+| `gxr-handtracking-toggle` - Galaxy XR hand tracking toggle | The Manager Action button live-patches `surfaceflinger`'s own memory so the headset cannot switch its active input mode to HAND. Confirmed live: controllers keep tracking through a grip release while enabled. | this repo: [`gxr-handtracking-toggle/`](gxr-handtracking-toggle) |
 
 ## Requirements
 
@@ -40,19 +41,22 @@ module is offered as an update.
 
 ## Modules whose source lives here
 
-`gxr-display-off` is developed in this repository (`gxr-display-off/`), not in a
-separate one. It has no published release yet, so it is not in `modules.json`;
-build and install it by hand until a release exists:
+`gxr-display-off` and `gxr-handtracking-toggle` are developed in this
+repository, not in a separate one. `gxr-display-off` has a published release
+and is already in `modules.json`, picked up automatically by the module
+source above. `gxr-handtracking-toggle` does not have a release yet; build and
+install it by hand until one exists:
 
 ```sh
-python tools/make_module_zip.py gxr-display-off dist/gxr-display-off-v0.2.0.zip
+python tools/make_module_zip.py gxr-handtracking-toggle dist/gxr-handtracking-toggle-v1.0.0.zip
 ```
 
 The ZIP has `module.prop` at the root and forward-slash entry names (KernelSU
 will not show a module's WebUI if `webroot/index.html` is stored with a
-backslash, which is what Windows ZIP tools write). See
-[`gxr-display-off/README.md`](gxr-display-off/README.md) for the modes, the WebUI
-and recovery.
+backslash, which is what Windows ZIP tools write). See each module's own
+README ([`gxr-display-off/README.md`](gxr-display-off/README.md),
+[`gxr-handtracking-toggle/README.md`](gxr-handtracking-toggle/README.md)) for
+details and recovery.
 
 ## License
 

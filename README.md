@@ -13,11 +13,6 @@ The current contents are:
 | `gxr-alvr` - Galaxy XR face tracking relay | Runs the headset-side face/eye relay (`gxr_alvr`) as root and streams the full face/eye parameter set to VRCFaceTracking over UDP 41463. | [`compdoge/gxr-root-ft`](https://github.com/compdoge/gxr-root-ft) |
 | `gxr-display-off` - Galaxy XR display-off on eye loss | Blanks both headset panels (or sleeps the system) after the wearer's eyes are gone for the set delay, and restores them on eyes; WebUI to pick the mode and delay. | this repo: [`gxr-display-off/`](gxr-display-off) |
 | `gxr-handtracking-toggle` - Galaxy XR hand tracking toggle | The Manager Action button live-patches `surfaceflinger`'s own memory so the headset cannot switch its active input mode to HAND. Confirmed live: controllers keep tracking through a grip release while enabled. | this repo: [`gxr-handtracking-toggle/`](gxr-handtracking-toggle) |
-
-Not yet released or in `modules.json`:
-
-| Module | What it does | Source |
-| --- | --- | --- |
 | `gxr-fanctl-focus` - Galaxy XR Fan Control (focus) | Fork of BreadDoesStuff's `gxr-fanctl`: fans at max only while Steam Link or Virtual Desktop is focused, stock Samsung fan curve otherwise. WebUI included. | this repo: [`gxr-fanctl-focus/`](gxr-fanctl-focus) |
 
 ## Requirements
@@ -47,9 +42,10 @@ module is offered as an update.
 
 ## Modules whose source lives here
 
-`gxr-display-off` and `gxr-handtracking-toggle` are developed in this
-repository, not in a separate one. Both have a published release and are
-already in `modules.json`, picked up automatically by the module source above.
+`gxr-display-off`, `gxr-handtracking-toggle` and `gxr-fanctl-focus` are
+developed in this repository, not in a separate one. All have a published
+release and are already in `modules.json`, picked up automatically by the
+module source above.
 To build a new version by hand:
 
 ```sh
@@ -60,7 +56,8 @@ The ZIP has `module.prop` at the root and forward-slash entry names (KernelSU
 will not show a module's WebUI if `webroot/index.html` is stored with a
 backslash, which is what Windows ZIP tools write). See each module's own
 README ([`gxr-display-off/README.md`](gxr-display-off/README.md),
-[`gxr-handtracking-toggle/README.md`](gxr-handtracking-toggle/README.md)) for
+[`gxr-handtracking-toggle/README.md`](gxr-handtracking-toggle/README.md),
+[`gxr-fanctl-focus/README.md`](gxr-fanctl-focus/README.md)) for
 details and recovery.
 
 ## License

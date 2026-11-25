@@ -8,5 +8,8 @@
   },
   "gxr-handtracking-toggle": {
     "repository": "compdoge/gxr-ksu-modules"
+  },
+  "gxr-fanctl-focus": {
+    "repository": "compdoge/gxr-ksu-modules"
   }
 }

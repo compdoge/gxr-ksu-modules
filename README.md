@@ -14,6 +14,12 @@ The current contents are:
 | `gxr-display-off` - Galaxy XR display-off on eye loss | Blanks both headset panels (or sleeps the system) after the wearer's eyes are gone for the set delay, and restores them on eyes; WebUI to pick the mode and delay. | this repo: [`gxr-display-off/`](gxr-display-off) |
 | `gxr-handtracking-toggle` - Galaxy XR hand tracking toggle | The Manager Action button live-patches `surfaceflinger`'s own memory so the headset cannot switch its active input mode to HAND. Confirmed live: controllers keep tracking through a grip release while enabled. | this repo: [`gxr-handtracking-toggle/`](gxr-handtracking-toggle) |
 
+Not yet released or in `modules.json`:
+
+| Module | What it does | Source |
+| --- | --- | --- |
+| `gxr-fanctl-focus` - Galaxy XR Fan Control (focus) | Fork of BreadDoesStuff's `gxr-fanctl`: fans at max only while Steam Link or Virtual Desktop is focused, stock Samsung fan curve otherwise. WebUI included. | this repo: [`gxr-fanctl-focus/`](gxr-fanctl-focus) |
+
 ## Requirements
 
 This source targets the KernelSU build used on the Galaxy XR:

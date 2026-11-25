@@ -1,0 +1,6 @@
+id=gxr-fanctl-focus
+name=Galaxy XR Fan Control (focus)
+version=v1.0.0
+versionCode=1
+author=compdoge (fork of BreadDoesStuff gxr-fanctl)
+description=Runs the Galaxy XR fans at max only while Steam Link or Virtual Desktop is the focused app, and hands the fan back to Samsung SSRM otherwise. Fork of BreadDoesStuff/galaxy-xr-modules gxr-fanctl (MIT). Config and WebUI: /data/adb/gxr-fanctl-focus/config.conf
